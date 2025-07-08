@@ -12,39 +12,6 @@ jobs:
     steps:
       - name: Checkout notebook repository
         uses: actions/checkout@v3
-      
-      - name: Commit and push rendered HTML
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
-          GITHUB_MAIL: ${{ secrets.GH_MAIL }}
-        run: |
-          echo "🔧 Configuring Git user..."
-          git config --global user.name "GIT_Workflow"
-          git config --global user.email "$GITHUB_MAIL"
-      
-          echo "🔑 GH_PAT length: ${#GITHUB_TOKEN}"
-      
-          echo "🔁 Git remote before:"
-          git remote -v
-      
-          echo "🔧 Updating remote to use GH_PAT..."
-          git remote set-url origin https://${GITHUB_TOKEN}@github.com/lmareis/PC-Algorithm-An-Application-on-the-Alarm-Dataset.git
-      
-          echo "🧹 Removing GitHub Actions credential helper..."
-          git config --global --unset credential.helper || true
-      
-          echo "🔁 Git remote after:"
-          git remote -v
-      
-          echo "⬇️ Pulling latest main..."
-          git pull origin main || echo "⚠️ Pull failed"
-      
-          echo "📦 Committing changes..."
-          git add PC_Alg.html
-          git commit -m "Render and commit PC_Alg.html from GitHub Actions" || echo "✅ No changes to commit"
-      
-          echo "🚀 Pushing..."
-          git push origin main
 
       - name: Commit and push rendered HTML
         env:
