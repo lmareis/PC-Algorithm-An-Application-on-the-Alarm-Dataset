@@ -1,7 +1,5 @@
 ---
-title: "PC-Algorithm for Causal Discovery: An Application on the Alarm Dataset"
-author: "Leopold Mareis, leopold.mareis@tum.de"
-output: html_document
+output: md_document
 ---
 
 # PC Algorithm for Causal Discovery
