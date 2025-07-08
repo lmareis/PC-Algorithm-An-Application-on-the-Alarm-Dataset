@@ -38,7 +38,8 @@ jobs:
             libharfbuzz-dev \
             libfribidi-dev \
             libtiff5-dev \
-            libglpk40
+            libglpk40 \
+            pandoc
 
       - name: Set up R package cache
         uses: r-lib/actions/setup-renv@v2
