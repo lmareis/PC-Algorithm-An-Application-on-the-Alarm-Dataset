@@ -18,8 +18,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           GITHUB_MAIL: ${{ secrets.GH_MAIL }}
         run: |
+          echo "git config 1"
           git config --global user.name "GIT_Workflow"
+          echo "git config 2"
           git config --global user.email "leopold.mareis@tum.de"
+          echo "git pull"
           git pull origin main
           echo "successfull pull"
           git add PC_Alg.html
