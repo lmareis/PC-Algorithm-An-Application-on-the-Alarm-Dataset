@@ -20,7 +20,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           GITHUB_MAIL: ${{ secrets.GH_MAIL }}
         run: |
-          git config --global user.name "lmareis"
+          git config --global user.name "GIT_WORKFLOW"
           git config --global user.email "${GITHUB_MAIL}"
           git pull origin main
           git add PC_Alg.html
