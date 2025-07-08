@@ -12,9 +12,8 @@ jobs:
     steps:
       - name: Checkout notebook repository
         uses: actions/checkout@v3
-
       
-     - name: Commit and push rendered HTML
+      - name: Commit and push rendered HTML
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           GITHUB_MAIL: ${{ secrets.GH_MAIL }}
@@ -46,8 +45,6 @@ jobs:
       
           echo "🚀 Pushing..."
           git push origin main
-
-
 
       - name: Commit and push rendered HTML
         env:
