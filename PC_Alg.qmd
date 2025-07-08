@@ -1,6 +1,5 @@
 ---
-format: html
-freeze: true
+format: md
 ---
 
 # PC Algorithm for Causal Discovery
