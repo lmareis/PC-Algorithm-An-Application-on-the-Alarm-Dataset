@@ -37,7 +37,8 @@ jobs:
             libfontconfig1-dev \
             libharfbuzz-dev \
             libfribidi-dev \
-            libtiff5-dev
+            libtiff5-dev \
+            libglpk40
 
       - name: Set up R package cache
         uses: r-lib/actions/setup-renv@v2
