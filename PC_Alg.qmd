@@ -5,6 +5,7 @@ bibliography: references.bib
 toc: true
 toc-depth: 4
 toc-expand: true
+page-layout: full
 sidebar: false
 code-links:
   - text: Git Repository
