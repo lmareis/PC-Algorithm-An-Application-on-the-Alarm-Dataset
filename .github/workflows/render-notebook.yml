@@ -54,7 +54,7 @@ jobs:
 
       - name: Render R Markdown
         run: |
-          rmarkdown::render("PC_Alg.Rmd", output_format = "html_document")
+          rmarkdown::render("PC_Alg.qmd")
         shell: Rscript {0}
 
       - name: Commit and push rendered HTML
