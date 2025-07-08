@@ -32,7 +32,7 @@ jobs:
           git remote -v || echo "❌ Failed to list remotes"
       
           echo "🔧 Updating remote to use GH_PAT..."
-          git remote set-url origin https://x-access-token:$GITHUB_TOKEN@github.com/lmareis/PC-Algorithm-An-Application-on-the-Alarm-Dataset.git
+          git remote set-url origin https://${GITHUB_TOKEN}@github.com/lmareis/PC-Algorithm-An-Application-on-the-Alarm-Dataset.git
       
           echo "🔁 Git remote after:"
           git remote -v
@@ -46,6 +46,7 @@ jobs:
       
           echo "🚀 Pushing..."
           git push origin main
+
 
       - name: Commit and push rendered HTML
         env:
