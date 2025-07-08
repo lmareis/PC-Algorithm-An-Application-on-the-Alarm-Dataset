@@ -59,7 +59,7 @@ jobs:
 
       - name: Render R Markdown
         run: |
-          rmarkdown::render("PC_Alg.qmd")
+          #rmarkdown::render("PC_Alg.qmd")
         shell: Rscript {0}
 
       - name: Commit and push rendered HTML
