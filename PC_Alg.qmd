@@ -1,6 +1,7 @@
 ---
 format: html
 embed-resources: true
+bibliography: references.bib
 toc: true
 toc-depth: 4
 toc-expand: true
@@ -14,11 +15,11 @@ code-links:
 
 # PC Algorithm for Causal Discovery
 
-This notebook presents and applies the structure learning PC algorithm on the alarm dataset. The PC algorithm was introduced by Peter Spirtes and Clark Glymour \[1\] to infer a graphical structure to a distribution. (Conditional) independencies hold in the distribution if paths in the associated graph are blocked (d-separation). The converse statement is called faithfulness. The PC algorithm starts with a complete graph and removes edges by testing (conditional) independencies. The key assumption of the PC algorithm is that all revelant and influencing variables are measures, a.k.a. 'no unmeasured confounding. Directed edges encode causality, a non-symmetric generalization of conditioning.
+This notebook presents and applies the structure learning PC algorithm on the alarm dataset. The PC algorithm was introduced by @spirtes2000causation to infer a graphical structure to a distribution. (Conditional) independencies hold in the distribution if paths in the associated graph are blocked (d-separation). The converse statement is called faithfulness. The PC algorithm starts with a complete graph and removes edges by testing (conditional) independencies. The key assumption of the PC algorithm is that all revelant and influencing variables are measures, a.k.a. 'no unmeasured confounding. Directed edges encode causality, a non-symmetric generalization of conditioning.
 
 ## Loading the Alarm Dataset and its DAG
 
-We apply the algorithm on the alarm dataset \[2\] of size 37 x 20,000. It can be downloaded from the Zenodo 'Graphical Modelling and Causal Inference' (<https://zenodo.org/records/14793281)> community under the [CC0](https://creativecommons.org/publicdomain/zero/1.0/deed.en) License.
+We apply the algorithm on the alarm dataset [@beinlich1989alarm] of size 37 x 20,000. It can be downloaded from the Zenodo 'Graphical Modelling and Causal Inference' (<https://zenodo.org/records/14793281)> community under the [CC0](https://creativecommons.org/publicdomain/zero/1.0/deed.en) License.
 
 ```{r, message=FALSE}
 library(zen4R) # download files from Zenodo
@@ -155,9 +156,3 @@ legend("right", legend = c("Distance to GT", "Estimated Edges"),
 The plot indicates a very good estimation performance from 8,000 samples onwards. When estimating causal effects in a second stage, we recommend data splitting to prevent information leakage.
 
 Finally, the 'pcalg' package also supports a 'skeleton' function. This skips the second, edge orienting phase and returns an undirected graph. Several applications are solely interested in modeling a joint distribution. By leveraging the obtained independencies, the joint distribution can be expressed and estimated via a product of lower-dimensional distributions decreasing the computational complexity.
-
-# References
-
-\[1\] Spirtes, P., Glymour, C. N., Scheines, R., & Heckerman, D. (2000). Causation, prediction, and search. MIT press.
-
-\[2\] Beinlich I, Suermondt HJ, Chavez RM, Cooper GF (1989). "The ALARM Monitoring System: A Case Study with Two Probabilistic Inference Techniques for Belief Networks". Proceedings of the 2nd European Conference on Artificial Intelligence in Medicine, 247–256.
