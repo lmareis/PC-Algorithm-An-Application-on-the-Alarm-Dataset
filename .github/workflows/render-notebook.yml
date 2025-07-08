@@ -20,6 +20,11 @@ jobs:
         with:
           r-version: '4.4.2'
 
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: '1.5.57'
+
       - name: Install system dependencies 
         run: |
           sudo apt-get update
