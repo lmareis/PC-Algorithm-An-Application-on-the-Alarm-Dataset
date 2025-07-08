@@ -1,16 +1,15 @@
 ---
 format: html
-embed-resources: true
-bibliography: references.bib
-toc: true
-toc-depth: 4
-toc-expand: true
+embed-resources: true # self contained html output
+bibliography: references.bib 
+#toc: true
+#toc-depth: 4
+#toc-expand: true
 page-layout: full
-#sidebar: false
-code-links:
-  - text: Git Repository
-    icon: file-code
-    href: https://github.com/lmareis/PC-Algorithm-An-Application-on-the-Alarm-Dataset
+#code-links:
+#  - text: Git Repository
+#    icon: file-code
+#    href: https://github.com/lmareis/PC-Algorithm-An-Application-on-the-Alarm-Dataset
 ---
 
 # PC Algorithm for Causal Discovery
