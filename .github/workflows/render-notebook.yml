@@ -13,6 +13,7 @@ jobs:
       - name: Checkout notebook repository
         uses: actions/checkout@v3
 
+      
       - name: Commit and push rendered HTML
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
@@ -22,17 +23,16 @@ jobs:
           git config --global user.name "GIT_Workflow"
           git config --global user.email "$GITHUB_MAIL"
       
-          echo "👤 Git config:"
-          git config --global --get user.name || echo "❌ Failed to get user.name"
-          git config --global --get user.email || echo "❌ Failed to get user.email"
-      
           echo "🔑 GH_PAT length: ${#GITHUB_TOKEN}"
       
           echo "🔁 Git remote before:"
-          git remote -v || echo "❌ Failed to list remotes"
+          git remote -v
       
           echo "🔧 Updating remote to use GH_PAT..."
           git remote set-url origin https://${GITHUB_TOKEN}@github.com/lmareis/PC-Algorithm-An-Application-on-the-Alarm-Dataset.git
+      
+          echo "🧹 Removing GitHub Actions credential helper..."
+          git config --global --unset credential.helper
       
           echo "🔁 Git remote after:"
           git remote -v
@@ -46,6 +46,7 @@ jobs:
       
           echo "🚀 Pushing..."
           git push origin main
+
 
 
       - name: Commit and push rendered HTML
