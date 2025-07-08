@@ -21,6 +21,7 @@ jobs:
           git config --global user.name "GIT_Workflow"
           git config --global user.email "leopold.mareis@tum.de"
           git pull origin main
+          echo "successfull pull"
           git add PC_Alg.html
           git commit -m "Render and commit PC_Alg.html from GitHub Actions" || echo "No changes to commit"
           git push https://${GH_PAT}@github.com/lmareis/PC-Algorithm-An-Application-on-the-Alarm-Dataset.git
