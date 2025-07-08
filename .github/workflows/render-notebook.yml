@@ -23,4 +23,4 @@ jobs:
           git pull origin main
           git add PC_Alg.html
           git commit -m "Render and commit PC_Alg.html from GitHub Actions" || echo "No changes to commit"
-          git push https://x-access-token:${GITHUB_TOKEN}@github.com/lmareis/PC-Algorithm-An-Application-on-the-Alarm-Dataset.git main
+          git push https://${GH_PAT}@github.com/lmareis/PC-Algorithm-An-Application-on-the-Alarm-Dataset.git main
