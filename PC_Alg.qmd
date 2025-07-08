@@ -1,5 +1,14 @@
 ---
-format: md
+format: html
+toc: true
+toc-depth: 4
+toc-expand: true
+sidebar:
+  style: "floating"
+code-links:
+  - text: Git Repository
+    icon: file-code
+    href: https://github.com/lmareis/PC-Algorithm-An-Application-on-the-Alarm-Dataset
 ---
 
 # PC Algorithm for Causal Discovery
