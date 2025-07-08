@@ -18,13 +18,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           GITHUB_MAIL: ${{ secrets.GH_MAIL }}
         run: |
-          echo "git config 1"
           git config --global user.name "GIT_Workflow"
-          echo "git config 2"
           git config --global user.email "leopold.mareis@tum.de"
-          echo "git pull"
           git pull origin main
-          echo "successfull pull"
           git add PC_Alg.html
           git commit -m "Render and commit PC_Alg.html from GitHub Actions" || echo "No changes to commit"
+          echo "everything ok"
           git push https://${GH_PAT}@github.com/lmareis/PC-Algorithm-An-Application-on-the-Alarm-Dataset.git
