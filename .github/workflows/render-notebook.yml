@@ -4,6 +4,8 @@ on:
   push:
     branches: main
   workflow_dispatch:
+permissions:
+  contents: write
 
 jobs:
   render:
@@ -11,7 +13,7 @@ jobs:
 
     steps:
       - name: Checkout notebook repository
-        uses: actions/checkout@2
+        uses: actions/checkout@v3
 
       - name: Commit and push rendered HTML
         env:
