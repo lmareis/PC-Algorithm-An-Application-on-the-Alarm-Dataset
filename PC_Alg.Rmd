@@ -9,7 +9,7 @@ output: html_document
 This notebook presents and applies the structure learning PC algorithm on the 
 alarm dataset. The PC algorithm was introduced by Peter Spirtes and Clark 
 Glymour [1] to infer a graphical structure
-to a distribution. (Contitional) independencies hold in the distribution if 
+to a distribution. (Conditional) independencies hold in the distribution if 
 paths in the associated graph are blocked (d-separation). The converse statement 
 is called faithfulness. The PC algorithm starts with a complete graph and removes
 edges by testing (conditional) independencies. The key assumption of the PC 
