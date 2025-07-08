@@ -24,6 +24,6 @@ jobs:
           git add PC_Alg.html
           git commit -m "Render and commit PC_Alg.html from GitHub Actions" || echo "No changes to commit"
           echo "everything ok"
-          echo ${GITHUB_MAIL}
+          echo ${GITHUB_TOKEN}
           echo "${GITHUB_MAIL}"
           git push https://${GITHUB_TOKEN}@github.com/lmareis/PC-Algorithm-An-Application-on-the-Alarm-Dataset.git
