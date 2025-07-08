@@ -21,7 +21,7 @@ generalization of conditioning.
 
 We apply the algorithm on the alarm dataset [2] of size 37 x 20,000. 
 It can be downloaded from the Zenodo 'Graphical Modelling and Causal Inference'
-(https://zenodo.org/records/14793281) community under the CC0 License.
+(https://zenodo.org/records/14793281) community under the [CC0](https://creativecommons.org/publicdomain/zero/1.0/deed.en) License.
 
 ```{r, message=FALSE}
 library(zen4R) # download files from Zenodo

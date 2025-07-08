@@ -1,0 +1,12 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.Rprofile
+PC-Algorithm-An-Application-on-the-Alarm-Dataset.Rproj
+
+renv/library/
+renv/python/
+
+*.tex
+*.pdf
