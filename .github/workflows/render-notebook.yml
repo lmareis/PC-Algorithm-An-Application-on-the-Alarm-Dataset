@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout notebook repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Commit and push rendered HTML
         env:
