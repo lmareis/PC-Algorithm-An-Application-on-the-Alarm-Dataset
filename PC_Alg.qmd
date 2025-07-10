@@ -1,15 +1,15 @@
 ---
-format: html
-embed-resources: true # self contained html output
+format: 
+  html:
+    embed-resources: true # self contained html output
+    toc: true
+    toc-depth: 4
+    toc-expand: true
+    code-links:
+      - text: Git Repository
+        icon: file-code
+        href: https://github.com/lmareis/PC-Algorithm-An-Application-on-the-Alarm-Dataset
 bibliography: references.bib 
-toc: true
-toc-depth: 4
-toc-expand: true
-#page-layout: full
-code-links:
-  - text: Git Repository
-    icon: file-code
-    href: https://github.com/lmareis/PC-Algorithm-An-Application-on-the-Alarm-Dataset
 ---
 
 # PC Algorithm for Causal Discovery
@@ -112,7 +112,7 @@ distance_to_gt(pc_oracle_fit, amat_sub_gt)
 
 ## PC Algorithm: Chi-Squared Independence Test
 
-As our data is discrete with at most 4 levels, we choose the Chi-Squared independence test as the criterion to remove edges with the PC algorithm. Any rank test allowing for two discrete variables is possible as well. If the data is continuous and normal, 'gaussCItest' can be selected. A non-parametric, however computationally more demanding, alternative by kernel testing with, e.g., the 'dHSIC' package.
+As our data is discrete with at most 4 levels, we choose the Chi-Squared independence test as the criterion to remove edges with the PC algorithm. Any rank test allowing for two discrete variables is possible as well. If the data is continuous and normal, 'gaussCItest' can be selected. A non-parametric, however computationally more demanding, alternative by kernel testing with, e.g., the ['dHSIC'](https://cran.r-project.org/web/packages/dHSIC/index.html) package.
 
 ```{r}
 suffStat <- list(dm = as.data.frame(sub_alarm), nlev = apply(sub_alarm, 2, function(x) length(unique(x))), adaptDF = FALSE)
@@ -154,4 +154,4 @@ legend("right", legend = c("Distance to GT", "Estimated Edges"),
 
 The plot indicates a very good estimation performance from 8,000 samples onwards. When estimating causal effects in a second stage, we recommend data splitting to prevent information leakage.
 
-Finally, the 'pcalg' package also supports a 'skeleton' function. This skips the second, edge orienting phase and returns an undirected graph. Several applications are solely interested in modeling a joint distribution. By leveraging the obtained independencies, the joint distribution can be expressed and estimated via a product of lower-dimensional distributions decreasing the computational complexity.
+Finally, the ['pcalg'](https://cran.r-project.org/web/packages/pcalg/index.html) package also supports a 'skeleton' function. This skips the second, edge orienting phase and returns an undirected graph. Several applications are solely interested in modeling a joint distribution. By leveraging the obtained independencies, the joint distribution can be expressed and estimated via a product of lower-dimensional distributions decreasing the computational complexity.
