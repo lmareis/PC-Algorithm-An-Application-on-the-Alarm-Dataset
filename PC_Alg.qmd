@@ -1,20 +1,23 @@
 ---
-format: 
-  html:
-    code-links:
-      - text: Git Repository
-        icon: file-code
-        href: https://github.com/lmareis/PC-Algorithm-An-Application-on-the-Alarm-Dataset
 bibliography: references.bib 
 authors: # see https://quarto.org/docs/journals/authors.html for options
   - name: Leopold Mareis 
     orcid: 0000-0002-2624-6522
     affiliation: "Technical University of Munich"
     country: Germany
-    
 ---
 
 # PC Algorithm for Causal Discovery
+
+| Resource | Information |
+|-|---|
+| Data DOI  | [10.5281/zenodo.7676615](10.5281/zenodo.7676615)   |
+| Git + DOI  | [Git](https://github.com/lmareis/PC-Algorithm-An-Application-on-the-Alarm-Dataset) [10.5281/zenodo.15304388](10.5281/zenodo.15304388)|
+| Short Description | The structure learning PC Algorithm is applied on the synthetic ALARM Dataset. This notebook (i) shows the limitations of the algorithm by using an oracle conditional independence test, (ii) showcases the performance with the Chi-squared conditional independence test, and (iii) investigates the dependence on the dataset's sample size. |
+
+: {.striped}
+
+## Introduction
 
 This notebook presents and applies the structure learning PC algorithm on the alarm dataset. The PC algorithm was introduced by @spirtes2000causation to infer a graphical structure to a distribution. (Conditional) independencies hold in the distribution if paths in the associated graph are blocked (d-separation). The converse statement is called faithfulness. The PC algorithm starts with a complete graph and removes edges by testing (conditional) independencies. The key assumption of the PC algorithm is that all relevant and influencing variables are measures, a.k.a. 'no unmeasured confounding. Directed edges encode causality, a non-symmetric generalization of conditioning.
 
@@ -50,7 +53,8 @@ alarm[alarm == "ZERO"] <- 0
 alarm[alarm == "LOW"] <- 1
 alarm[alarm == "NORMAL"] <- 2
 alarm[alarm == "HIGH"] <- 3
-alarm[alarm == "ONESIDED"] <- 3 # Variable INT: NORMAL < ONESIDED < ESOPHAGEAL
+# Variable INT: NORMAL < ONESIDED < ESOPHAGEAL
+alarm[alarm == "ONESIDED"] <- 3 
 alarm[alarm == "ESOPHAGEAL"] <- 4
 alarm <- apply(alarm, 2, as.numeric)
 alarm <- apply(alarm, 2, function(x) x - min(x))
@@ -60,11 +64,7 @@ The underlying ground truth directed acyclic graph (DAG) is given in the plot be
 
 ```{r}
 A <- amat(read.bif(temp_bif))
-alarm_names <- c("HIST", "CVP", "PCWP", "HYP", "LVV", "LVF", "STKV", "ERLO", 
-                 "HRBP", "HREK", "ERCA", "HRSA", "ANES", "APL", "TPR", "ECO2", 
-                 "KINK", "MINV", "FIO2", "PVS", "SAO2", "PAP", "PMB", "SHNT", 
-                 "INT", "PRSS", "DISC", "MVS", "VMCH", "VTUB", "VLNG", "VALV", 
-                 "ACO2", "CCHL", "HR", "CO", "BP")
+alarm_names <- c("HIST", "CVP", "PCWP", "HYP", "LVV", "LVF", "STKV", "ERLO", "HRBP", "HREK", "ERCA", "HRSA", "ANES", "APL", "TPR", "ECO2", "KINK", "MINV", "FIO2", "PVS", "SAO2", "PAP", "PMB", "SHNT", "INT", "PRSS", "DISC", "MVS", "VMCH", "VTUB", "VLNG", "VALV", "ACO2", "CCHL", "HR", "CO", "BP")
 colnames(A) <- alarm_names
 rownames(A) <- alarm_names
 ground_truth <- as(A, "graphNEL")
@@ -75,15 +75,14 @@ pcalg::plot(ground_truth, main = "Alarm: Ground Truth DAG")
 For demonstration purposes, we restrict the dataset to the ancestral set of 'MINV'. Note that the number of DAGs on n nodes grows super-exponentially (<https://oeis.org/A003024)> and that there are more than 800 Billion DAGs on 9 node.
 
 ```{r}
-sub_names <- c("MVS", "VMCH", "DISC", "VTUB", "PRSS", "KINK", "VLNG", "INT", 
-               "MINV")
+sub_names <- c("MVS", "VMCH", "DISC", "VTUB", "PRSS", "KINK", "VLNG", "INT", "MINV")
 sub_alarm <- alarm[, sub_names]
 sub_gt <- as(A[sub_names, sub_names], "graphNEL")
 amat_sub_gt <- as(sub_gt, "matrix")
 pcalg::plot(sub_gt, main = "Alarm Subselection: Ground Truth DAG")
 ```
 
-### PC Algorithm: Oracle Conditional Independence Test
+## PC Algorithm: Oracle Conditional Independence Test
 
 Without further assumptions, it is not possible to identify the presented DAG, which is why the PC algorithm returns a completed partially directed acyclic graph (CPDAG). Each CPDAG represents a class of DAGs where the undirected edges have to be appropriately directed. The following code chunk gives the best possible PC algorithm outcome by taking the implied condition independencies from the graph above instead of testing any hypothesis.
 
@@ -95,8 +94,7 @@ ci_test_dsep <- function(ground_truth, var_names) {
   }
 }
 
-pc_oracle_fit <- pc(suffStat = list(),indepTest = ci_test_dsep(sub_gt, sub_names),
-  alpha = 0.5,  # irrelevant since ci_test_dsep() returns either 0 or 1
+pc_oracle_fit <- pc(suffStat = list(),indepTest = ci_test_dsep(sub_gt, sub_names), alpha = 0.5,  # irrelevant since ci_test_dsep() returns either 0 or 1
   labels = sub_names)
 plot(pc_oracle_fit@graph, main = "PC Algorithm: Oracle Independence Test")
 ```
@@ -157,3 +155,25 @@ legend("right", legend = c("Distance to GT", "Estimated Edges"),
 The plot indicates a very good estimation performance from 8,000 samples onwards. When estimating causal effects in a second stage, we recommend data splitting to prevent information leakage.
 
 Finally, the ['pcalg'](https://cran.r-project.org/web/packages/pcalg/index.html) package also supports a 'skeleton' function. This skips the second, edge orienting phase and returns an undirected graph. Several applications are solely interested in modeling a joint distribution. By leveraging the obtained independencies, the joint distribution can be expressed and estimated via a product of lower-dimensional distributions decreasing the computational complexity.
+
+## Citing this Notebook {.unnumbered}
+
+Please cite our community with the following bib item. 
+``` bibtex
+@article{Mareis_Haug_Drton_2025,
+title={MaRDI's Zenodo Community for Graphical Modeling and Causal Inference},
+volume={2},
+journal={Proceedings of the Conference on Research Data Infrastructure},
+author={Mareis, Leopold and Haug, Stephan and Drton, Mathias},
+year={2025},
+month={Sep.}
+}
+```
+When using the alarm dataset, please give credit to the original author: Beinlich et al. 1989
+
+## Additional Information {.unnumbered}
+
+**License Information:** Please follow the above DOI for license information of data and code. 
+
+**Contact:** If you have suggestions, feel free to [create an issue](https://github.com/lmareis/PC-Algorithm-An-Application-on-the-Alarm-Dataset/issues) or contact the community moderators (mardi'at'statistics.cit.tum.de).
+
