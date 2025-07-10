@@ -1,15 +1,17 @@
 ---
 format: 
   html:
-    embed-resources: true # self contained html output
-    toc: true
-    toc-depth: 4
-    toc-expand: true
     code-links:
       - text: Git Repository
         icon: file-code
         href: https://github.com/lmareis/PC-Algorithm-An-Application-on-the-Alarm-Dataset
 bibliography: references.bib 
+authors: # see https://quarto.org/docs/journals/authors.html for options
+  - name: Leopold Mareis 
+    orcid: 0000-0002-2624-6522
+    affiliation: "Technical University of Munich"
+    country: Germany
+    
 ---
 
 # PC Algorithm for Causal Discovery
