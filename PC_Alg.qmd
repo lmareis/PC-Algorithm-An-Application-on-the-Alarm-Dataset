@@ -10,7 +10,7 @@ authors: # see https://quarto.org/docs/journals/authors.html for options
 # PC Algorithm for Causal Discovery
 
 | Resource | Information |
-|--------------------|----------------------------------------------------|
+|----|----|
 | Data DOI | [10.5281/zenodo.7676615](10.5281/zenodo.7676615) |
 | Git + DOI | [Git](https://github.com/lmareis/PC-Algorithm-An-Application-on-the-Alarm-Dataset) [10.5281/zenodo.15304388](10.5281/zenodo.15304388) |
 | Short Description | The structure learning PC Algorithm is applied on the synthetic ALARM Dataset. This notebook (i) shows the limitations of the algorithm by using an oracle conditional independence test, (ii) showcases the performance with the Chi-squared conditional independence test, and (iii) investigates the dependence on the dataset's sample size. |
@@ -166,7 +166,6 @@ Finally, the ['pcalg'](https://cran.r-project.org/web/packages/pcalg/index.html)
 # reset original library path
 .libPaths(original_libpaths)
 ```
-
 
 ## Citing this Notebook {.unnumbered}
 
