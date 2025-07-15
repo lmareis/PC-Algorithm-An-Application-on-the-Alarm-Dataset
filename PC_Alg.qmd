@@ -10,9 +10,9 @@ authors: # see https://quarto.org/docs/journals/authors.html for options
 # PC Algorithm for Causal Discovery
 
 | Resource | Information |
-|-|---|
-| Data DOI  | [10.5281/zenodo.7676615](10.5281/zenodo.7676615)   |
-| Git + DOI  | [Git](https://github.com/lmareis/PC-Algorithm-An-Application-on-the-Alarm-Dataset) [10.5281/zenodo.15304388](10.5281/zenodo.15304388)|
+|--------------------|----------------------------------------------------|
+| Data DOI | [10.5281/zenodo.7676615](10.5281/zenodo.7676615) |
+| Git + DOI | [Git](https://github.com/lmareis/PC-Algorithm-An-Application-on-the-Alarm-Dataset) [10.5281/zenodo.15304388](10.5281/zenodo.15304388) |
 | Short Description | The structure learning PC Algorithm is applied on the synthetic ALARM Dataset. This notebook (i) shows the limitations of the algorithm by using an oracle conditional independence test, (ii) showcases the performance with the Chi-squared conditional independence test, and (iii) investigates the dependence on the dataset's sample size. |
 
 : {.striped}
@@ -25,7 +25,13 @@ This notebook presents and applies the structure learning PC algorithm on the al
 
 We apply the algorithm on the alarm dataset [@beinlich1989alarm] of size 37 x 20,000. It can be downloaded from the Zenodo 'Graphical Modelling and Causal Inference' (<https://zenodo.org/records/14793281)> community under the [CC0](https://creativecommons.org/publicdomain/zero/1.0/deed.en) License.
 
-```{r, message=FALSE}
+```{r, message=FALSE, warning=FALSE, eval=TRUE}
+original_libpaths <- .libPaths()
+renv::load() # load R environment
+```
+
+```{r, message=FALSE, eval=FALSE}
+# necessary packages, only for information.
 library(zen4R) # download files from Zenodo
 library(bnlearn) # read ground truth graph
 library(pcalg) # PC Algorithm implementation
@@ -156,9 +162,16 @@ The plot indicates a very good estimation performance from 8,000 samples onwards
 
 Finally, the ['pcalg'](https://cran.r-project.org/web/packages/pcalg/index.html) package also supports a 'skeleton' function. This skips the second, edge orienting phase and returns an undirected graph. Several applications are solely interested in modeling a joint distribution. By leveraging the obtained independencies, the joint distribution can be expressed and estimated via a product of lower-dimensional distributions decreasing the computational complexity.
 
+```{r, message=FALSE, warning=FALSE, eval=TRUE}
+# reset original library path
+.libPaths(original_libpaths)
+```
+
+
 ## Citing this Notebook {.unnumbered}
 
-Please cite our community with the following bib item. 
+Please cite our community with the following bib item.
+
 ``` bibtex
 @article{Mareis_Haug_Drton_2025,
 title={MaRDI's Zenodo Community for Graphical Modeling and Causal Inference},
@@ -169,11 +182,11 @@ year={2025},
 month={Sep.}
 }
 ```
+
 When using the alarm dataset, please give credit to the original author: Beinlich et al. 1989
 
 ## Additional Information {.unnumbered}
 
-**License Information:** Please follow the above DOI for license information of data and code. 
+**License Information:** Please follow the above DOI for license information of data and code.
 
 **Contact:** If you have suggestions, feel free to [create an issue](https://github.com/lmareis/PC-Algorithm-An-Application-on-the-Alarm-Dataset/issues) or contact the community moderators (mardi'at'statistics.cit.tum.de).
-
